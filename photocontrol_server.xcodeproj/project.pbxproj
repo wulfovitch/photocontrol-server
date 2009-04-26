@@ -1,0 +1,478 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		3ADD1D0D0EBD0A9000E08A84 /* SSCrypto */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3ADD1D150EBD0AB500E08A84 /* Build configuration list for PBXAggregateTarget "SSCrypto" */;
+			buildPhases = (
+				3ADD1D0C0EBD0A9000E08A84 /* CopyFiles */,
+			);
+			dependencies = (
+			);
+			name = SSCrypto;
+			productName = SSCrypto;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		3A27AEED0F6F165A004DF081 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A27AEEC0F6F165A004DF081 /* Sparkle.framework */; };
+		3A27AF020F6F16CF004DF081 /* Sparkle.framework in Sparkle */ = {isa = PBXBuildFile; fileRef = 3A27AEEC0F6F165A004DF081 /* Sparkle.framework */; };
+		3A27AF0E0F6F18A1004DF081 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3A27AF0D0F6F18A1004DF081 /* dsa_pub.pem */; };
+		3A3375DA0ECBA5EB0088A7C6 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3375D90ECBA5EB0088A7C6 /* Message.m */; };
+		3A3BA0F10ED0EFC10001D284 /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */; };
+		3A695FA30F9E3E450053D0C7 /* photocontrol-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */; };
+		3AA905200ED5C771008C7916 /* FullScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */; };
+		3AA905D50ED5EBBF008C7916 /* FullScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA905D40ED5EBBF008C7916 /* FullScreenController.m */; };
+		3AB02D1F0F3FA5B1009FB5BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB02D1D0F3FA5B1009FB5BF /* Localizable.strings */; };
+		3ADD1ABE0EBCF4C400E08A84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1ABD0EBCF4C400E08A84 /* AppDelegate.m */; };
+		3ADD1ADE0EBCF51600E08A84 /* HTTPAuthenticationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1ADB0EBCF51600E08A84 /* HTTPAuthenticationRequest.m */; };
+		3ADD1B340EBCF5C400E08A84 /* FullScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1B330EBCF5C400E08A84 /* FullScreenWindow.m */; };
+		3ADD1B3E0EBCF81400E08A84 /* commandq.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADD1B3D0EBCF81400E08A84 /* commandq.png */; };
+		3ADD1BC20EBD03B800E08A84 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADD1BC10EBD03B800E08A84 /* CoreServices.framework */; };
+		3ADD1CD50EBD07F900E08A84 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1AD20EBCF4FC00E08A84 /* AsyncSocket.m */; };
+		3ADD1D300EBD0CE600E08A84 /* SSCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */; };
+		3ADD1D350EBD0D0300E08A84 /* SSCrypto.framework in SSCrypto */ = {isa = PBXBuildFile; fileRef = 3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */; };
+		3ADD1D5C0EBD0EFC00E08A84 /* SimpleCocoaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1D5A0EBD0EFC00E08A84 /* SimpleCocoaServer.m */; };
+		3AFCA9650FA21151001C437E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFCA9640FA21151001C437E /* MainMenu.xib */; };
+		3AFCA9A30FA218EC001C437E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3AFCA9A20FA218EC001C437E /* Credits.rtf */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3A27AF010F6F16B9004DF081 /* Sparkle */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3A27AF020F6F16CF004DF081 /* Sparkle.framework in Sparkle */,
+			);
+			name = Sparkle;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADD1D0C0EBD0A9000E08A84 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /tmp/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADD1D380EBD0D0600E08A84 /* SSCrypto */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3ADD1D350EBD0D0300E08A84 /* SSCrypto.framework in SSCrypto */,
+			);
+			name = SSCrypto;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* photocontrol_server_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = photocontrol_server_Prefix.pch; sourceTree = "<group>"; };
+		3A27AEEC0F6F165A004DF081 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		3A27AF0D0F6F18A1004DF081 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		3A3375D80ECBA5EB0088A7C6 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		3A3375D90ECBA5EB0088A7C6 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		3A3BA0EF0ED0EFC10001D284 /* HTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPServer.h; sourceTree = "<group>"; };
+		3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
+		3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "photocontrol-icon.icns"; sourceTree = "<group>"; };
+		3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullScreenWindow.xib; sourceTree = "<group>"; };
+		3AA905D30ED5EBBF008C7916 /* FullScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenController.h; sourceTree = "<group>"; };
+		3AA905D40ED5EBBF008C7916 /* FullScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenController.m; sourceTree = "<group>"; };
+		3AB02D1E0F3FA5B1009FB5BF /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3AB02D220F3FA5C0009FB5BF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3ADD1ABC0EBCF4C400E08A84 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3ADD1ABD0EBCF4C400E08A84 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3ADD1AD10EBCF4FC00E08A84 /* AsyncSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		3ADD1AD20EBCF4FC00E08A84 /* AsyncSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		3ADD1ADA0EBCF51600E08A84 /* HTTPAuthenticationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPAuthenticationRequest.h; sourceTree = "<group>"; };
+		3ADD1ADB0EBCF51600E08A84 /* HTTPAuthenticationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPAuthenticationRequest.m; sourceTree = "<group>"; };
+		3ADD1B320EBCF5C400E08A84 /* FullScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenWindow.h; sourceTree = "<group>"; };
+		3ADD1B330EBCF5C400E08A84 /* FullScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenWindow.m; sourceTree = "<group>"; };
+		3ADD1B3D0EBCF81400E08A84 /* commandq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commandq.png; sourceTree = "<group>"; };
+		3ADD1BC10EBD03B800E08A84 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
+		3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = "<group>"; };
+		3ADD1D5A0EBD0EFC00E08A84 /* SimpleCocoaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCocoaServer.m; sourceTree = SOURCE_ROOT; };
+		3ADD1D5B0EBD0EFC00E08A84 /* SimpleCocoaServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCocoaServer.h; sourceTree = SOURCE_ROOT; };
+		3AFCA9620FA21130001C437E /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3AFCA9660FA21163001C437E /* MainMenu.xib */ = {isa = PBXFileReference; explicitFileType = file.xib; name = MainMenu.xib; path = de.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3AFCA9A20FA218EC001C437E /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* photocontrol server.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "photocontrol server.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				3ADD1BC20EBD03B800E08A84 /* CoreServices.framework in Frameworks */,
+				3ADD1D300EBD0CE600E08A84 /* SSCrypto.framework in Frameworks */,
+				3A27AEED0F6F165A004DF081 /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3ADD1ABC0EBCF4C400E08A84 /* AppDelegate.h */,
+				3ADD1ABD0EBCF4C400E08A84 /* AppDelegate.m */,
+				3AA905D30ED5EBBF008C7916 /* FullScreenController.h */,
+				3AA905D40ED5EBBF008C7916 /* FullScreenController.m */,
+				3ADD1B320EBCF5C400E08A84 /* FullScreenWindow.h */,
+				3ADD1B330EBCF5C400E08A84 /* FullScreenWindow.m */,
+				3A3375D80ECBA5EB0088A7C6 /* Message.h */,
+				3A3375D90ECBA5EB0088A7C6 /* Message.m */,
+				3ADD1D5B0EBD0EFC00E08A84 /* SimpleCocoaServer.h */,
+				3ADD1D5A0EBD0EFC00E08A84 /* SimpleCocoaServer.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A27AEEC0F6F165A004DF081 /* Sparkle.framework */,
+				3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */,
+				3ADD1BC10EBD03B800E08A84 /* CoreServices.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* photocontrol server.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* photocontrol_server */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				3ADD1AD00EBCF4FC00E08A84 /* TCP */,
+				3ADD1AD90EBCF51600E08A84 /* HTTP */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = photocontrol_server;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* photocontrol_server_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3AFCA9A20FA218EC001C437E /* Credits.rtf */,
+				3AFCA9640FA21151001C437E /* MainMenu.xib */,
+				3A27AF0D0F6F18A1004DF081 /* dsa_pub.pem */,
+				3ADD1B3D0EBCF81400E08A84 /* commandq.png */,
+				3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */,
+				3AB02D1D0F3FA5B1009FB5BF /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3ADD1AD00EBCF4FC00E08A84 /* TCP */ = {
+			isa = PBXGroup;
+			children = (
+				3ADD1AD10EBCF4FC00E08A84 /* AsyncSocket.h */,
+				3ADD1AD20EBCF4FC00E08A84 /* AsyncSocket.m */,
+			);
+			name = TCP;
+			sourceTree = "<group>";
+		};
+		3ADD1AD90EBCF51600E08A84 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				3ADD1ADA0EBCF51600E08A84 /* HTTPAuthenticationRequest.h */,
+				3ADD1ADB0EBCF51600E08A84 /* HTTPAuthenticationRequest.m */,
+				3A3BA0EF0ED0EFC10001D284 /* HTTPServer.h */,
+				3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* photocontrol_server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "photocontrol_server" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				3ADD1D380EBD0D0600E08A84 /* SSCrypto */,
+				3A27AF010F6F16B9004DF081 /* Sparkle */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = photocontrol_server;
+			productInstallPath = "$(HOME)/Applications";
+			productName = photocontrol_server;
+			productReference = 8D1107320486CEB800E47090 /* photocontrol server.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "photocontrol_server" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+				de,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* photocontrol_server */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* photocontrol_server */,
+				3ADD1D0D0EBD0A9000E08A84 /* SSCrypto */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ADD1B3E0EBCF81400E08A84 /* commandq.png in Resources */,
+				3AA905200ED5C771008C7916 /* FullScreenWindow.xib in Resources */,
+				3AB02D1F0F3FA5B1009FB5BF /* Localizable.strings in Resources */,
+				3A27AF0E0F6F18A1004DF081 /* dsa_pub.pem in Resources */,
+				3A695FA30F9E3E450053D0C7 /* photocontrol-icon.icns in Resources */,
+				3AFCA9650FA21151001C437E /* MainMenu.xib in Resources */,
+				3AFCA9A30FA218EC001C437E /* Credits.rtf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ADD1CD50EBD07F900E08A84 /* AsyncSocket.m in Sources */,
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				3ADD1ABE0EBCF4C400E08A84 /* AppDelegate.m in Sources */,
+				3ADD1ADE0EBCF51600E08A84 /* HTTPAuthenticationRequest.m in Sources */,
+				3ADD1B340EBCF5C400E08A84 /* FullScreenWindow.m in Sources */,
+				3ADD1D5C0EBD0EFC00E08A84 /* SimpleCocoaServer.m in Sources */,
+				3A3375DA0ECBA5EB0088A7C6 /* Message.m in Sources */,
+				3A3BA0F10ED0EFC10001D284 /* HTTPServer.m in Sources */,
+				3AA905D50ED5EBBF008C7916 /* FullScreenController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3AB02D1D0F3FA5B1009FB5BF /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AB02D1E0F3FA5B1009FB5BF /* Localizable.strings */,
+				3AB02D220F3FA5C0009FB5BF /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3AFCA9640FA21151001C437E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3AFCA9620FA21130001C437E /* MainMenu.xib */,
+				3AFCA9660FA21163001C437E /* MainMenu.xib */,
+			);
+			name = MainMenu.xib;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3ADD1D0E0EBD0A9000E08A84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = SSCrypto;
+			};
+			name = Debug;
+		};
+		3ADD1D0F0EBD0A9000E08A84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = SSCrypto;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Volumes/Daten/downloads/SimpleHTTPServer,
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = photocontrol_server_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "photocontrol server";
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Volumes/Daten/downloads/SimpleHTTPServer,
+					"\"$(SRCROOT)\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = photocontrol_server_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = "photocontrol server";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = required;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3ADD1D150EBD0AB500E08A84 /* Build configuration list for PBXAggregateTarget "SSCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3ADD1D0E0EBD0A9000E08A84 /* Debug */,
+				3ADD1D0F0EBD0A9000E08A84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "photocontrol_server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "photocontrol_server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
