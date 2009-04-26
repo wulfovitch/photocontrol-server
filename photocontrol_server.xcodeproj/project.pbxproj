@@ -26,6 +26,7 @@
 		3A27AF0E0F6F18A1004DF081 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 3A27AF0D0F6F18A1004DF081 /* dsa_pub.pem */; };
 		3A3375DA0ECBA5EB0088A7C6 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3375D90ECBA5EB0088A7C6 /* Message.m */; };
 		3A3BA0F10ED0EFC10001D284 /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */; };
+		3A4419860FA4F34900EA120B /* photocontrol-start.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4419850FA4F34900EA120B /* photocontrol-start.png */; };
 		3A695FA30F9E3E450053D0C7 /* photocontrol-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */; };
 		3AA905200ED5C771008C7916 /* FullScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */; };
 		3AA905D50ED5EBBF008C7916 /* FullScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA905D40ED5EBBF008C7916 /* FullScreenController.m */; };
@@ -92,6 +93,7 @@
 		3A3375D90ECBA5EB0088A7C6 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		3A3BA0EF0ED0EFC10001D284 /* HTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPServer.h; sourceTree = "<group>"; };
 		3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
+		3A4419850FA4F34900EA120B /* photocontrol-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photocontrol-start.png"; sourceTree = "<group>"; };
 		3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "photocontrol-icon.icns"; sourceTree = "<group>"; };
 		3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullScreenWindow.xib; sourceTree = "<group>"; };
 		3AA905D30ED5EBBF008C7916 /* FullScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenController.h; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A4419850FA4F34900EA120B /* photocontrol-start.png */,
 				3AFCA9A20FA218EC001C437E /* Credits.rtf */,
 				3AFCA9640FA21151001C437E /* MainMenu.xib */,
 				3A27AF0D0F6F18A1004DF081 /* dsa_pub.pem */,
@@ -307,6 +310,7 @@
 				3A695FA30F9E3E450053D0C7 /* photocontrol-icon.icns in Resources */,
 				3AFCA9650FA21151001C437E /* MainMenu.xib in Resources */,
 				3AFCA9A30FA218EC001C437E /* Credits.rtf in Resources */,
+				3A4419860FA4F34900EA120B /* photocontrol-start.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

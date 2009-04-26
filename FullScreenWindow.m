@@ -13,7 +13,7 @@
     [result setBackgroundColor: [NSColor blackColor]];
     //This next line pulls the window up to the front on top of other system windows.  This is how the Clock app behaves;
     //generally you wouldn't do this for windows unless you really wanted them to float above everything.
-    [result setLevel: NSScreenSaverWindowLevel];
+    //[result setLevel: NSScreenSaverWindowLevel];
     //Let's start with no transparency for all drawing into the window
     [result setAlphaValue:1.0];
     //but let's turn off opaqueness so that we can see through the parts of the window that we're not drawing into
@@ -23,7 +23,7 @@
       
     NSRect  screenFrame = [[NSScreen mainScreen] frame];
     [self setFrame:screenFrame display:YES];
-    
+	
     return result;
 }
 

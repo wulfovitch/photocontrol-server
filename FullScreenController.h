@@ -45,5 +45,5 @@
 - (void)sendContentsOfDirectory:(NSString *)path directories:(BOOL)dirs toConnection:(SimpleCocoaConnection *)con;
 - (void)stayAwake:(NSTimer *)sleepTimer;
 + (NSImage *)imageByScalingProportionallyToSize:(NSSize)targetSize withImage:(NSImage *)image;
-//+ (NSString *)computerName;
+- (void)mouseEntered:(NSEvent *)theEvent;
 @end

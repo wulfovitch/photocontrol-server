@@ -1,6 +1,5 @@
 #import "FullScreenController.h"
 
-
 @implementation FullScreenController
 
 enum {
@@ -81,14 +80,37 @@ enum {
 															  userInfo: nil
 															   repeats: YES];
 	}
-	[fullScreenWindow makeKeyAndOrderFront:nil];
-	displayedImage = [NSImage imageNamed:@"commandq.png"];
+	//[fullScreenWindow makeKeyAndOrderFront:nil];
+	
+	displayedImage = [NSImage imageNamed:@"photocontrol-start.png"];
 	[imageDisplayedInFullScreen setImage:displayedImage];
 	[imageDisplayedInFullScreen setNeedsDisplay:YES];
+	
+	// hide the menubar and setup an tracking area, which is responsible for showing the menubar if the mousecursor is moved to the top (and for hiding the menubar if the mousecursor is moved somewhere else)
+	[NSMenu setMenuBarVisible:NO];
+	NSTrackingArea *menuBarTrackingArea = [[NSTrackingArea alloc] initWithRect:NSMakeRect(0, 0, screenWidth, screenHeight-22) options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways) owner:self userInfo:nil];
+	[imageDisplayedInFullScreen addTrackingArea:menuBarTrackingArea];
+	[menuBarTrackingArea release];
 	
 	// start stay awake timer which prevents the display from sleeping
 	keepAwakeTimer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(stayAwake:) userInfo:nil repeats: YES];  
 }
+
+- (void)mouseEntered:(NSEvent *)theEvent {
+	//NSLog(@"mouse exits menu bar");
+	[NSMenu setMenuBarVisible:NO];
+}
+
+- (void)mouseExited:(NSEvent *)theEvent {
+	//NSLog(@"mouse enters menu bar");
+	[NSMenu setMenuBarVisible:YES];
+}
+
+//- (void)mouseMoved:(NSEvent *)theEvent {
+//}
+
+//- (void)cursorUpdate:(NSEvent *)theEvent {
+//}
 
 - (void)stayAwake:(NSTimer *)sleepTimer
 {
