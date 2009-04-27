@@ -528,7 +528,7 @@
 						<reference key="source" ref="521290027"/>
 						<reference key="destination" ref="543202491"/>
 					</object>
-					<int key="connectionID">471</int>
+					<int key="connectionID">473</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -875,7 +875,6 @@
 					<string>454.IBPluginDependency</string>
 					<string>455.IBPluginDependency</string>
 					<string>456.IBPluginDependency</string>
-					<string>469.CustomClassName</string>
 					<string>469.IBPluginDependency</string>
 					<string>470.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
@@ -904,7 +903,7 @@
 					<string>{{596, 852}, {216, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{509, 573}, {64, 6}}</string>
+					<string>{{608, 813}, {64, 6}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{436, 809}, {64, 6}}</string>
@@ -930,17 +929,17 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{436, 835}, {197, 73}}</string>
+					<string>{{497, 796}, {197, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{585, 797}, {306, 20}}</string>
+					<string>{{323, 869}, {306, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{74, 862}</string>
 					<string>{{11, 977}, {478, 20}}</string>
-					<string>{{238, 200}, {544, 116}}</string>
-					<string>{{238, 200}, {544, 116}}</string>
+					<string>{{858, 433}, {544, 116}}</string>
+					<string>{{858, 433}, {544, 116}}</string>
 					<reference ref="9"/>
 					<string>{{11, 666}, {480, 270}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -953,14 +952,13 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>SUUpdater</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{597, 624}, {273, 173}}</string>
+					<string>{{335, 696}, {273, 173}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{23, 794}, {245, 183}}</string>
@@ -990,7 +988,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">471</int>
+			<int key="maxID">473</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1075,7 +1073,7 @@
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../PhotoPresenterServer.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../photocontrol_server.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>

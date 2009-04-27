@@ -44,7 +44,6 @@ enum {
 	[simpleCocoaServer startListening];
 	
 	// advertise server on the network (via bonjour)
-	//netService = [[NSNetService alloc] initWithDomain:@"" type:@"_photocontrol._tcp." name:@"photocontrol Server" port:55567];
 	netService = [[NSNetService alloc] initWithDomain:@"" type:@"_photocontrol._tcp." name:@"" port:55567];
 	[netService setDelegate:self];
 	[netService publish];

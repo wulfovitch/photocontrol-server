@@ -34,7 +34,6 @@
 		3ADD1ABE0EBCF4C400E08A84 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1ABD0EBCF4C400E08A84 /* AppDelegate.m */; };
 		3ADD1ADE0EBCF51600E08A84 /* HTTPAuthenticationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1ADB0EBCF51600E08A84 /* HTTPAuthenticationRequest.m */; };
 		3ADD1B340EBCF5C400E08A84 /* FullScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1B330EBCF5C400E08A84 /* FullScreenWindow.m */; };
-		3ADD1B3E0EBCF81400E08A84 /* commandq.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ADD1B3D0EBCF81400E08A84 /* commandq.png */; };
 		3ADD1BC20EBD03B800E08A84 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADD1BC10EBD03B800E08A84 /* CoreServices.framework */; };
 		3ADD1CD50EBD07F900E08A84 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1AD20EBCF4FC00E08A84 /* AsyncSocket.m */; };
 		3ADD1D300EBD0CE600E08A84 /* SSCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */; };
@@ -108,7 +107,6 @@
 		3ADD1ADB0EBCF51600E08A84 /* HTTPAuthenticationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPAuthenticationRequest.m; sourceTree = "<group>"; };
 		3ADD1B320EBCF5C400E08A84 /* FullScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenWindow.h; sourceTree = "<group>"; };
 		3ADD1B330EBCF5C400E08A84 /* FullScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenWindow.m; sourceTree = "<group>"; };
-		3ADD1B3D0EBCF81400E08A84 /* commandq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = commandq.png; sourceTree = "<group>"; };
 		3ADD1BC10EBD03B800E08A84 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SSCrypto.framework; sourceTree = "<group>"; };
 		3ADD1D5A0EBD0EFC00E08A84 /* SimpleCocoaServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCocoaServer.m; sourceTree = SOURCE_ROOT; };
@@ -211,7 +209,6 @@
 				3AFCA9A20FA218EC001C437E /* Credits.rtf */,
 				3AFCA9640FA21151001C437E /* MainMenu.xib */,
 				3A27AF0D0F6F18A1004DF081 /* dsa_pub.pem */,
-				3ADD1B3D0EBCF81400E08A84 /* commandq.png */,
 				3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */,
@@ -303,7 +300,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ADD1B3E0EBCF81400E08A84 /* commandq.png in Resources */,
 				3AA905200ED5C771008C7916 /* FullScreenWindow.xib in Resources */,
 				3AB02D1F0F3FA5B1009FB5BF /* Localizable.strings in Resources */,
 				3A27AF0E0F6F18A1004DF081 /* dsa_pub.pem in Resources */,
@@ -424,6 +420,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -438,7 +435,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_OBJC_GC = required;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
