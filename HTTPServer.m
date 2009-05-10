@@ -969,14 +969,18 @@ static NSMutableArray *recentNonces;
 	
 	NSURL *url;
 	
+	if ([relativePath hasPrefix:@"/"]) relativePath = [@"." stringByAppendingString:relativePath];
+	
 	if([relativePath hasSuffix:@"/"])
 	{
 		NSString *completedRelativePath = [relativePath stringByAppendingString:@"index.html"];
-		url = [NSURL URLWithString:completedRelativePath relativeToURL:[server documentRoot]];
+		//url = [NSURL URLWithString:completedRelativePath relativeToURL:[server documentRoot]];
+		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], completedRelativePath]];
 	}
 	else
 	{
-		url = [NSURL URLWithString:relativePath relativeToURL:[server documentRoot]];
+		//url = [NSURL URLWithString:relativePath relativeToURL:[server documentRoot]];
+		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], relativePath]];
 	}
 	
 	// Watch out for sneaky requests with ".." in the path
@@ -1024,14 +1028,18 @@ static NSMutableArray *recentNonces;
 	
 	NSURL *url;
 	
+	if ([path hasPrefix:@"/"]) path = [@"." stringByAppendingString:path];
+	
 	if([path hasSuffix:@"/"])
 	{
 		NSString *newPath = [path stringByAppendingString:@"index.html"];
-		url = [NSURL URLWithString:newPath relativeToURL:[server documentRoot]];
+		//url = [NSURL URLWithString:newPath relativeToURL:[server documentRoot]];
+		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], newPath]];
 	}
 	else
 	{
-		url = [NSURL URLWithString:path relativeToURL:[server documentRoot]];
+		//url = [NSURL URLWithString:path relativeToURL:[server documentRoot]];
+		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], path]];
 	}
 	
 	// Watch out for sneaky requests with ".." in the path
