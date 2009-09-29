@@ -1,9 +1,9 @@
 //  
 //  SimpleCocoaServer, a basic server class written in objectiv-c for use in cocoa applications
-//   -- v0.2 --
+//   -- v1.0 --
 //   SimpleCocoaServer.h
 //   ------------------------------------------------------
-//  | Created by David J. Koster, release 28.05.2008.      |
+//  | Created by David J. Koster, release 26.08.2009.      |
 //  | Copyright 2008 David J. Koster. All rights reserved. |
 //  | http://www.david-koster.de/code/simpleserver         |
 //  | code@david-koster.de for help or see:                |
@@ -49,7 +49,7 @@ typedef enum SCSListenAddress SCSListenAddress;
 
 
 @interface SimpleCocoaServer : NSObject {
-@private
+	@private
 	int serverPort; //Port on which server runs
     id serverDelegate; //Delegate that will be sent the process.. messages
 	BOOL isListening; //is server running?
@@ -76,7 +76,7 @@ typedef enum SCSListenAddress SCSListenAddress;
 - (void)setListenAddress:(SCSListenAddress)newLAddr;
 - (BOOL)setListenAddressByString:(NSString *)newStrAddr;
 
-- (void)processMessage:(NSString *)message fromConnection:(SimpleCocoaConnection *)con;
+- (void)processMessage:(NSString *)message orData:(NSData *)data fromConnection:(SimpleCocoaConnection *)con;
 - (void)processNewConnection:(SimpleCocoaConnection *)con;
 - (void)processClosingConnection:(SimpleCocoaConnection *)con;
 
@@ -93,12 +93,12 @@ typedef enum SCSListenAddress SCSListenAddress;
 
 
 @interface SimpleCocoaConnection : NSObject {
-@private
+	@private
 	NSFileHandle *fileHandle; //Socket for the connection
     id connectionDelegate; //always the server
     NSString *remoteAddress;  // client IP address
 	int remotePort; //client port
-	
+
 }
 
 - (id)initWithFileHandle:(NSFileHandle *)fh delegate:(id)initDelegate;

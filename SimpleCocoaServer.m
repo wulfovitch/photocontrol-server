@@ -1,9 +1,9 @@
 //  
 //  SimpleCocoaServer, a basic server class written in objectiv-c for use in cocoa applications
-//   -- v0.2 --
+//   -- v1.0 --
 //   SimpleCocoaServer.m
 //   ------------------------------------------------------
-//  | Created by David J. Koster, release 28.05.2008.      |
+//  | Created by David J. Koster, release 26.08.2009.      |
 //  | Copyright 2008 David J. Koster. All rights reserved. |
 //  | http://www.david-koster.de/code/simpleserver         |
 //  | code@david-koster.de for help or see:                |
@@ -110,7 +110,7 @@
 		return SCSInitError_Port;
 	if(!serverDelegate)
 		return SCSInitError_Delegate;
-	
+
 	int filedescriptor = -1;
 	CFSocketRef socket = CFSocketCreate(kCFAllocatorDefault, PF_INET, SOCK_STREAM, IPPROTO_TCP, 1, NULL, NULL);
 	
@@ -248,10 +248,13 @@
 
 #pragma mark Delegate Methods
 
-- (void)processMessage:(NSString *)message fromConnection:(SimpleCocoaConnection *)con
+- (void)processMessage:(NSString *)message orData:(NSData *)data fromConnection:(SimpleCocoaConnection *)con;
 {
-	if([serverDelegate respondsToSelector:@selector(processMessage:fromConnection:)])
-		[serverDelegate processMessage:message fromConnection:con];
+	//for compatibility to older versions that used this class
+	if([serverDelegate respondsToSelector:@selector(processMessage:fromConnection:)] && ![serverDelegate respondsToSelector:@selector(processMessage:orData:fromConnection:)])
+		[serverDelegate processMessage:message fromConnection:con];//[serverDelegate performSelector:@selector(processMessage:fromConnection:) withObject:message withObject:con];
+	else if([serverDelegate respondsToSelector:@selector(processMessage:orData:fromConnection:)])
+		[serverDelegate processMessage:message orData:data fromConnection:con];
 }
 
 - (void)processNewConnection:(SimpleCocoaConnection *)con
@@ -268,19 +271,19 @@
 
 //Not used in this version. Perhaps used and documented in future versions.
 /*#pragma mark Delegate Error Methods
- 
- - (void)processNewConnectionFileHandleError:(NSNumber *)error
- {
- if([serverDelegate respondsToSelector:@selector(processNewConnectionFileHandleError:)])
- [serverDelegate processNewConnectionFileHandleError:error];
- }
- 
- - (void)processDataSendingError:(NSException *)exception forConnection:(SimpleCocoaConnection *)con
- {
- if([serverDelegate respondsToSelector:@selector(processDataSendingError:forConnection:)])
- [serverDelegate processDataSendingError:exception forConnection:con];
- }
- */
+
+- (void)processNewConnectionFileHandleError:(NSNumber *)error
+{
+	if([serverDelegate respondsToSelector:@selector(processNewConnectionFileHandleError:)])
+		[serverDelegate processNewConnectionFileHandleError:error];
+}
+
+- (void)processDataSendingError:(NSException *)exception forConnection:(SimpleCocoaConnection *)con
+{
+	if([serverDelegate respondsToSelector:@selector(processDataSendingError:forConnection:)])
+		[serverDelegate processDataSendingError:exception forConnection:con];
+}
+*/
 #pragma mark Connections
 
 - (NSArray *)connections
@@ -332,11 +335,11 @@
 }
 
 #pragma mark Sending Data
-
 - (BOOL)sendData:(NSData *)data toConnection:(SimpleCocoaConnection *)con
 {
+	NSFileHandle *remoteFileHandle = [con fileHandle];
 	@try {
-        NSFileHandle *remoteFileHandle = [con fileHandle];
+		//[NSThread detachNewThreadSelector:@selector(finalSendData:)	toTarget:self withObject:self];
         [remoteFileHandle writeData:data];
     }
     @catch (NSException *exception) {
@@ -393,7 +396,7 @@
 			struct sockaddr_in *sock = (struct sockaddr_in *)CFDataGetBytePtr(addrData);
 			[self setRemotePort:(sock->sin_port)];
 			char *naddr = inet_ntoa(sock->sin_addr);
-			[self setRemoteAddress:[NSString stringWithCString:naddr]];
+			[self setRemoteAddress:[NSString stringWithCString:naddr encoding: NSUTF8StringEncoding]];
 			CFRelease(addrData);
 		} else {
 			[self setRemoteAddress:@"NULL"];
@@ -462,10 +465,14 @@
 	if ([data length] == 0) {
 		// NSFileHandle's way of telling us that the client closed the connection
 		[connectionDelegate closeConnection:self];
+		return;
 	} else {
 		[fileHandle readInBackgroundAndNotify];
 		NSString *received = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-		[connectionDelegate processMessage:received fromConnection:self];
+		if([received characterAtIndex:0] == 0x04) { // End-Of-Transmission sent by client
+			return;
+		}
+		[connectionDelegate processMessage:received orData:data fromConnection:self];
 	}
 }
 

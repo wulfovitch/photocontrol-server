@@ -237,9 +237,9 @@ enum {
 # pragma mark delegate methods for SimpleCocoaServer
 
 // this method processes the incoming messages from the client
-- (void)processMessage:(NSString *)message fromConnection:(SimpleCocoaConnection *)con {
+- (void)processMessage:(NSString *)message orData:(NSData *)data fromConnection:(SimpleCocoaConnection *)con {
     NSLog(@"'%@' received from client: %@\n", message, con);
-	
+
 	NSArray *messageArray = [message componentsSeparatedByString:@"\n"];
 	NSUInteger i, count = [messageArray	count];
 	for (i = 0; i < count; i++) {
