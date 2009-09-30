@@ -12,7 +12,7 @@
 	IBOutlet NSImageView *imageDisplayedInFullScreen;
 	NSString *displayedImageName;
 	NSImage *displayedImage;	
-	NSString *selectedDirectory;
+	NSString *rootDirectory;
 	NSTimer *keepAwakeTimer;
 	
 	// HTTP Server variables
@@ -37,7 +37,7 @@
 	NSMutableArray *messagesToSend;
 }
 
-@property (nonatomic, retain) NSString *selectedDirectory;
+@property (nonatomic, retain) NSString *rootDirectory;
 @property (nonatomic, retain) NSImageView *imageDisplayedInFullScreen;
 
 - (id)initWithWindowNibName:(NSString *)nibName andDirectory:(NSString *)dir;

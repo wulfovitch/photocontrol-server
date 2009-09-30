@@ -775,6 +775,8 @@ static NSMutableArray *recentNonces;
 **/
 - (void)replyToHTTPRequest
 {
+	NSLog(@"##########################");
+	NSLog(@"replyToHTTPRequest called!");
 	// Check the HTTP version
 	// If it's anything but HTTP version 1.1, we don't support it
 	NSString *version = [(NSString *)CFHTTPMessageCopyVersion(request) autorelease];
@@ -823,12 +825,62 @@ static NSMutableArray *recentNonces;
 		return;
 	}
 	
+	NSLog(@"[uri relativeString] %@", [uri relativeString]);
+	NSString *relativeURL = [uri relativeString];
+	
+	// ########### CUSTOM CODE
+	NSString *imagesPath = [NSString stringWithFormat:@"%@%@/", [[server documentRoot] relativePath], [relativeURL stringByDeletingLastPathComponent]];
+	
+	NSMutableArray *imagesArray = [[NSMutableArray alloc] init];	
+	
+	// iterate through the directories
+	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager] enumeratorAtPath:imagesPath];
+	NSString *pname;
+	while (pname = [direnum nextObject])
+	{
+		// add images to images array
+		if ([[[pname pathExtension] lowercaseString] isEqualToString:@"jpg"] ||
+			[[[pname pathExtension] lowercaseString] isEqualToString:@"jpeg"] ||
+			[[[pname pathExtension] lowercaseString] isEqualToString:@"png"] ||
+			[[[pname pathExtension] lowercaseString] isEqualToString:@"gif"] ||
+			[[[pname pathExtension] lowercaseString] isEqualToString:@"bmp"] ||
+			[[[pname pathExtension] lowercaseString] isEqualToString:@"tif"] ||
+			[[[pname pathExtension] lowercaseString] isEqualToString:@"tiff"])
+		{
+			if(![pname isCaseInsensitiveLike:@".DS_Store"])
+			{
+				NSString *addedImage = [[NSString alloc] initWithString:pname];
+				[imagesArray addObject:addedImage];
+				[addedImage release];
+			}
+		}
+	}
+	NSLog(@"replyToHTTPRequest [imagesArray count]: %d", [imagesArray count]);
+	NSLog(@"replyToHTTPRequest [relativePath lastPathComponent]: %@", [relativeURL lastPathComponent]);
+	
+	int imageIndex = [[relativeURL lastPathComponent] intValue];
+	if ([imagesArray count] < 1) {
+		return;
+	}
+	NSLog(@"imageIndex: %d", imageIndex);
+	
+	NSLog(@"replyToHTTPRequest0 %@", uri);
+	//NSString *standardizedString = [(NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) [NSString stringWithFormat:@"%@/%@", [relativeURL stringByDeletingLastPathComponent], [imagesArray objectAtIndex:imageIndex]], CFSTR(""), NULL, kCFStringEncodingUTF8) autorelease];
+	//NSString *standardizedString = [[NSString stringWithFormat:@"%@/%@", [relativeURL stringByDeletingLastPathComponent], [imagesArray objectAtIndex:imageIndex]] stringByStandardizingPath];
+	//NSLog(@"standardizedString: %@", standardizedString);
+	NSString *standardizedString = [[NSString stringWithFormat:@"%@/%@", [relativeURL stringByDeletingLastPathComponent], [imagesArray objectAtIndex:imageIndex]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	
+	uri = [NSURL URLWithString:standardizedString];
+	NSLog(@"replyToHTTPRequest1 %@", uri);
+	
+	
+	
 	// Respond properly to HTTP 'GET' and 'HEAD' commands
-	NSData *customData = [self dataForURI:[uri relativeString]];
+	NSData *customData = [self dataForURI:uri];
 	UInt64 contentLength = (UInt64)[customData length];
 	if(contentLength == 0)
 	{
-		contentLength = [self contentLengthForURI:[uri relativeString]];
+		contentLength = [self contentLengthForURI:uri];
 	}
 	
 	if(contentLength == 0)
@@ -847,7 +899,7 @@ static NSMutableArray *recentNonces;
 	
 	/* ################################## */
 	
-	//NSLog(@"%@", [uri relativeString]);
+	NSLog(@"replyToHTTPRequest2 %@", [uri relativeString]);
 	NSString *realName = [uri relativeString];
 	unsigned int ch;
 	char ext_temp;
@@ -908,6 +960,18 @@ static NSMutableArray *recentNonces;
 	// Status Code 200 - OK
 	CFHTTPMessageRef response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, 200, NULL, kCFHTTPVersion1_1);
 	
+	// set the correct mime type
+	if(ty == NSJPEGFileType)
+		CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Type", (CFStringRef)@"image/jpeg");
+	if(ty == NSPNGFileType)
+		CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Type", (CFStringRef)@"image/png");
+	if(ty == NSGIFFileType)
+		CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Type", (CFStringRef)@"image/gif");
+	if(ty == NSTIFFFileType)
+		CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Type", (CFStringRef)@"image/tiff");
+	if(ty == NSBMPFileType)
+		CFHTTPMessageSetHeaderFieldValue(response, (CFStringRef)@"Content-Type", (CFStringRef)@"image/bmp");
+	
 	NSString *contentLengthStr = [NSString stringWithFormat:@"%qu", contentLength];
 	CFHTTPMessageSetHeaderFieldValue(response, CFSTR("Content-Length"), (CFStringRef)contentLengthStr);
     
@@ -932,19 +996,21 @@ static NSMutableArray *recentNonces;
 		}
 		else
 		{
-			fileResponse = [[self fileForURI:[uri relativeString]] retain];
+			fileResponse = [[self fileForURI:uri] retain];
 			NSData *fileData = [fileResponse readDataOfLength:READ_CHUNKSIZE];
 			[asyncSocket writeData:fileData withTimeout:WRITE_BODY_TIMEOUT tag:HTTP_PARTIAL_RESPONSE_BODY];
 		}
 	}
 	
+	NSLog(@"replyToHTTPRequest call ended!");
+	NSLog(@"##############################");
 	CFRelease(response);
 }
 
 /**
  * Converts relative URI path into full file-system path.
 **/
-- (NSString *)filePathForURI:(NSString *)path
+- (NSString *)filePathForURI:(NSURL *)url
 {
 	// Override me to perform custom path mapping.
 	// For example you may want to use a default file other than index.html, or perhaps support multiple types.
@@ -960,43 +1026,37 @@ static NSMutableArray *recentNonces;
 	// [NSURL URLWithString:@"/foo%20bar" relativeToURL:baseURL] == @"/foo bar"
 	// [NSURL URLWithString:@"/foo" relativeToURL:baseURL]       == @"/foo"
 	
-	NSString *relativePath = path;
+	NSString *relativePath = [url path];
 	
 	while([relativePath hasPrefix:@"/"] && [relativePath length] > 1)
 	{
 		relativePath = [relativePath substringFromIndex:1];
 	}
 	
-	NSURL *url;
-	
-	if ([relativePath hasPrefix:@"/"]) relativePath = [@"." stringByAppendingString:relativePath];
+	//if ([relativePath hasPrefix:@"/"]) relativePath = [@"." stringByAppendingString:relativePath];
 	
 	if([relativePath hasSuffix:@"/"])
 	{
-		NSString *completedRelativePath = [relativePath stringByAppendingString:@"index.html"];
-		//url = [NSURL URLWithString:completedRelativePath relativeToURL:[server documentRoot]];
-		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], completedRelativePath]];
+		url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", [server documentRoot], relativePath]];
 	}
 	else
 	{
-		//url = [NSURL URLWithString:relativePath relativeToURL:[server documentRoot]];
-		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], relativePath]];
+		url = [NSURL URLWithString:relativePath relativeToURL:[server documentRoot]];
 	}
 	
 	// Watch out for sneaky requests with ".." in the path
 	// For example, the following request: "../Documents/TopSecret.doc"
 	if(![[url path] hasPrefix:[[server documentRoot] path]]) return nil;
-	
-	return [[url path] stringByStandardizingPath];
+	return [url path];
 }
 
 /**
  * If the dataForURI method returns nil, then this method is consulted to obtain a file size.
  * If this method returns 0, then a 404 error is returned.
 **/
-- (UInt64)contentLengthForURI:(NSString *)path
+- (UInt64)contentLengthForURI:(NSURL *)url
 {
-	NSString *filePath = [self filePathForURI:path];
+	NSString *filePath = [self filePathForURI:url];
 	
 	NSDictionary *attributes = [[NSFileManager defaultManager] fileAttributesAtPath:filePath traverseLink:NO];
 	
@@ -1009,11 +1069,9 @@ static NSMutableArray *recentNonces;
  * This method is called to get a file handle for a request.
  * This is the preferred way to serve files straight from disk, especially large files.
 **/
-- (NSFileHandle *)fileForURI:(NSString *)path
-{
-	NSString *filePath = [self filePathForURI:path];
-	
-	return [NSFileHandle fileHandleForReadingAtPath:filePath];
+- (NSFileHandle *)fileForURI:(NSURL *)url
+{	
+	return [NSFileHandle fileHandleForReadingAtPath:[url path]];
 }
 
 /**
@@ -1021,30 +1079,30 @@ static NSMutableArray *recentNonces;
  * Use this method to return custom non-file data.
  * The fileForURI method is better equipped to serve files straight from disk.
 **/
-- (NSData *)dataForURI:(NSString *)path
+- (NSData *)dataForURI:(NSURL *)url
 {
 	// If there is no configured documentRoot, then it makes no sense to try to return anything
 	if(![server documentRoot]) return nil;
 	
-	NSURL *url;
+	//if ([path hasPrefix:@"/"]) path = [@"." stringByAppendingString:path];
 	
-	if ([path hasPrefix:@"/"]) path = [@"." stringByAppendingString:path];
-	
-	if([path hasSuffix:@"/"])
-	{
-		NSString *newPath = [path stringByAppendingString:@"index.html"];
-		//url = [NSURL URLWithString:newPath relativeToURL:[server documentRoot]];
-		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], newPath]];
-	}
-	else
-	{
-		//url = [NSURL URLWithString:path relativeToURL:[server documentRoot]];
-		url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], path]];
-	}
+	//if([url pathExtension:@"/"])
+	//{
+	//	NSString *newPath = [url stringByAppendingString:@"index.html"];
+	//	url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], newPath]];
+	//}
+	//else
+	//{
+	NSLog(@"dataForURI %@", url);
+	url = [[server documentRoot] URLByAppendingPathComponent:[url path]];
+	//url = [[NSURL URLWithString:[server documentRoot]] URLByAppendingPathComponent:[url path]];	
+	//url = [NSURL URLWithString:[url path] relativeToURL:[server documentRoot]];
+	//}
+	NSLog(@"dataForURI %@", url);
 	
 	// Watch out for sneaky requests with ".." in the path
 	// For example, the following request: "../Documents/TopSecret.doc"
-	if(![[url path] hasPrefix:[[server documentRoot] path]]) return nil;
+	//if(![[url path] hasPrefix:[[server documentRoot] path]]) return nil;
 	
 	// We don't want to map the file data into ram
 	// We just want to map it from the disk, and we also don't need to bother caching it

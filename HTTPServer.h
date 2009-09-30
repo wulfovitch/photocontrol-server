@@ -84,11 +84,11 @@
 - (NSString *)realm;
 - (NSString *)passwordForUser:(NSString *)username;
 
-- (NSString *)filePathForURI:(NSString *)path;
+- (NSString *)filePathForURI:(NSURL *)url;
 
-- (UInt64)contentLengthForURI:(NSString *)path;
-- (NSFileHandle *)fileForURI:(NSString *)path;
-- (NSData *)dataForURI:(NSString *)path;
+- (UInt64)contentLengthForURI:(NSURL *)url;
+- (NSFileHandle *)fileForURI:(NSURL *)url;
+- (NSData *)dataForURI:(NSURL *)url;
 
 - (void)handleInvalidRequest:(NSData *)data;
 

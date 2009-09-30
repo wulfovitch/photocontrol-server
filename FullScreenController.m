@@ -4,11 +4,10 @@
 
 enum {
 	sendingNothing = 0,
-	sendingSubDirs,
-	sendingPictures,
+	sendingSubDirs
 };
 
-@synthesize selectedDirectory;
+@synthesize rootDirectory;
 @synthesize imageDisplayedInFullScreen;
 
 - (id)initWithWindowNibName:(NSString *)nibName andDirectory:(NSString *)dir
@@ -16,8 +15,8 @@ enum {
 	// start fullscreen display
 	[super initWithWindowNibName:nibName];
 
-	self.selectedDirectory = dir;
-	NSLog(@"selected dir: %@", selectedDirectory);
+	self.rootDirectory = dir;
+	NSLog(@"selected dir: %@", rootDirectory);
 	
 	// set system variables
 	NSRect screenRect = [[NSScreen mainScreen] frame];
@@ -29,7 +28,7 @@ enum {
 	// start HTTP Server
 	httpServer = [[HTTPServer alloc] init];
 	[httpServer setType:@"_http._tcp."];
-	[httpServer setDocumentRoot:[NSURL fileURLWithPath:selectedDirectory]];
+	[httpServer setDocumentRoot:[NSURL fileURLWithPath:rootDirectory]];
 	
 	NSError *error;
 	BOOL success = [httpServer start:&error];
@@ -191,6 +190,7 @@ enum {
 		[msg release];
 	}
 	
+	/*
 	int imageCount = 0;
 	int i;
 	if(!dirs)
@@ -214,13 +214,14 @@ enum {
 		[messagesToSend addObject:msg];
 		[msg release];
 	}
+	*/
 	
 	if(dirs)
 	{
 		//msg = [[Message alloc] initWithMessage:@"### START IMAGECOUNT ###\n" andConnection:con];
 		//[messagesToSend addObject:msg];
 		//[msg release];
-		msg = [[Message alloc] initWithMessage:[NSString stringWithFormat:@"%i\n", imageCount] andConnection:con];
+		msg = [[Message alloc] initWithMessage:[NSString stringWithFormat:@"%i\n", [imagesArray count]] andConnection:con];
 		[messagesToSend addObject:msg];
 		[msg release];
 		msg = [[Message alloc] initWithMessage:@"### END IMAGECOUNT ###\n" andConnection:con];
@@ -253,18 +254,14 @@ enum {
 					{
 						//NSLog(@"start: send dir");
 						sending = sendingSubDirs;		
-					} else if([messageLine isEqualToString:@"### START PICTURELIST ###"])
-					{
-						//NSLog(@"start: send pictures");
-						sending = sendingPictures;		
-					}  else {
+					} else {
 						
 						// setting the image in the fullscreen here
 						// auto release pool has to be created here otherwise the app does not deallocate the used
 						// memory for the images which were already being displayed in fullscreen
 						NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];  
 						
-						NSString *imagePathString = [NSString stringWithFormat:@"%@%@", selectedDirectory, messageLine];
+						NSString *imagePathString = [NSString stringWithFormat:@"%@%@", rootDirectory, messageLine];
 					    NSLog(@"setting image: %@", imagePathString);
 						NSImage *imageToDisplayOrigSize = [[NSImage alloc] initWithContentsOfFile:imagePathString];
 						displayedImage = [FullScreenController imageByScalingProportionallyToSize:NSMakeSize(screenWidth, screenHeight) withImage:imageToDisplayOrigSize];
@@ -284,18 +281,7 @@ enum {
 						sending = sendingNothing;
 					} else {
 						// send contents of the received path
-						[self sendContentsOfDirectory:[NSString stringWithFormat:@"%@%@", self.selectedDirectory, messageLine] directories:YES toConnection:con];
-					}
-					break;
-					
-				case sendingPictures:
-					if([messageLine isEqualToString:@"### END PICTURELIST ###"])
-					{
-						//NSLog(@"stop: send pictures");
-						sending = sendingNothing;
-					} else {
-						// send contents of the received path
-						[self sendContentsOfDirectory:[NSString stringWithFormat:@"%@/%@/", self.selectedDirectory, messageLine] directories:NO toConnection:con];
+						[self sendContentsOfDirectory:[NSString stringWithFormat:@"%@%@", self.rootDirectory, messageLine] directories:YES toConnection:con];
 					}
 					break;
 			}
@@ -306,7 +292,7 @@ enum {
 // this method processes any new connection to the SimpleCocoaServer
 - (void)processNewConnection:(SimpleCocoaConnection *)con {
 	//NSLog(@"processing new con: %@", selectedDirectory);
-	[self sendContentsOfDirectory:self.selectedDirectory directories:YES toConnection:con];
+	[self sendContentsOfDirectory:self.rootDirectory directories:YES toConnection:con];
 }
 
 
