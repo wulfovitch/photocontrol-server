@@ -42,7 +42,7 @@
 
 - (id)initWithWindowNibName:(NSString *)nibName andDirectory:(NSString *)dir;
 - (void)handleTimer:(NSTimer *)timer;
-- (void)sendContentsOfDirectory:(NSString *)path directories:(BOOL)dirs toConnection:(SimpleCocoaConnection *)con;
+- (void)sendContentsOfDirectory:(NSString *)path toConnection:(SimpleCocoaConnection *)con;
 - (void)stayAwake:(NSTimer *)sleepTimer;
 + (NSImage *)imageByScalingProportionallyToSize:(NSSize)targetSize withImage:(NSImage *)image;
 - (void)mouseEntered:(NSEvent *)theEvent;

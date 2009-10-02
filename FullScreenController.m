@@ -132,104 +132,111 @@ enum {
 # pragma mark -
 # pragma mark methods for sending contents of a directory to the client
 
-- (void)sendContentsOfDirectory:(NSString *)path directories:(BOOL)dirs toConnection:(SimpleCocoaConnection *)con
+- (void)sendContentsOfDirectory:(NSString *)path toConnection:(SimpleCocoaConnection *)con
 {
-	path = [NSString stringWithFormat:@"%@", path];
+	NSLog(@"sendContentsOfDirectory:toConnection: with rootDirectory: '%@' and path: '%@", rootDirectory, path);
 	
-	// create arrays for the list of subdirectories/images
-	NSMutableArray *subDirectoryArray = [[NSMutableArray alloc] init];
-	NSMutableArray *imagesArray = [[NSMutableArray alloc] init];	
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSError* error = nil;
+	NSArray *directoryURLs = [fileManager contentsOfDirectoryAtURL:[NSURL URLWithString:rootDirectory]
+										includingPropertiesForKeys:NULL
+														   options:NSDirectoryEnumerationSkipsHiddenFiles | NSDirectoryEnumerationSkipsSubdirectoryDescendants
+															 error:&error];
 	
-	// iterate through the directories
-	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager] enumeratorAtPath:path];
-	NSString *pname;
-	while (pname = [direnum nextObject])
+	
+	
+	NSArray *pathComponents = [[NSURL URLWithString:path] pathComponents];
+
+	if(directoryURLs == nil)
 	{
-		// add images to images array
-		if ([[[pname pathExtension] lowercaseString] isEqualToString:@"jpg"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"jpeg"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"png"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"gif"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"bmp"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"tif"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"tiff"])
+	  NSLog(@"empty dir or directory not existant");
+	  return;
+	} else {
+	  
+		for (int i=0; i < [pathComponents count]; i++)
 		{
-			if(![pname isCaseInsensitiveLike:@".DS_Store"])
+			NSString *component = [pathComponents objectAtIndex:i];
+			if([component isEqual:@"/"])
 			{
-				NSString *addedImage = [[NSString alloc] initWithString:pname];
-				[imagesArray addObject:addedImage];
-				[addedImage release];
+				NSLog(@"/ dir catched");
+			} else {
+				
+				NSLog(@"%@", component);
+				int intIndex;
+				BOOL success = [[NSScanner scannerWithString:component] scanInteger:&intIndex];
+				// check if that file even exists
+				if(!success && intIndex >= [directoryURLs count])
+				{
+					NSLog(@"Not a number");
+					return;
+				} else {
+					NSURL *file = [directoryURLs objectAtIndex:intIndex];
+				  
+					NSNumber *isDirectory = nil;
+					[file getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:NULL];
+				  
+					if ([isDirectory boolValue])
+					{
+						directoryURLs = [fileManager contentsOfDirectoryAtURL:file
+												   includingPropertiesForKeys:NULL
+																	  options:NSDirectoryEnumerationSkipsHiddenFiles | NSDirectoryEnumerationSkipsSubdirectoryDescendants
+																		error:&error];
+					} 
+				}
 			}
 		}
-		else
-		{
-			// add subdirectories to subdirectory array
-			BOOL isDir;
-			NSString *pathToDir = [path stringByAppendingString:[NSString stringWithFormat:@"/%@", pname]];
-			if ([[NSFileManager defaultManager] fileExistsAtPath:pathToDir isDirectory:&isDir] && isDir) {
-				[subDirectoryArray addObject:[NSString stringWithString:pname]];
-			}
-			[direnum skipDescendents]; // we are not interested in the contents of subdirectories
-		}
 	}
-	
-	if(dirs)
-	{
-		msg = [[Message alloc] initWithMessage:@"### START DIRECTORIES ###\n" andConnection:con];
-		[messagesToSend addObject:msg];
-		[msg release];
-		int i;
-		for ( i = 0; i < [subDirectoryArray count]; ++i )
-		{  
-			msg = [[Message alloc] initWithMessage:[NSString stringWithFormat:@"%@\n", [subDirectoryArray objectAtIndex:i]] andConnection:con];
-			[messagesToSend addObject:msg];
-			[msg release];
-		}
-		msg = [[Message alloc] initWithMessage:@"### END DIRECTORIES ###\n" andConnection:con];
-		[messagesToSend addObject:msg];
-		[msg release];
-	}
-	
-	/*
+							  
+							  
+	NSMutableArray *subDirectoryArray = [[NSMutableArray alloc] init];
 	int imageCount = 0;
-	int i;
-	if(!dirs)
-	{ 
-		msg = [[Message alloc] initWithMessage:@"### START PICTURELIST ###\n" andConnection:con];
-		[messagesToSend addObject:msg];
-		[msg release];
-	}
-	for ( i = 0; i < [imagesArray count]; ++i ) {  
-		imageCount++;
-		if (!dirs)
-		{
-			msg = [[Message alloc] initWithMessage:[NSString stringWithFormat:@"%@\n", [imagesArray objectAtIndex:i]] andConnection:con];
-			[messagesToSend addObject:msg];
-			[msg release];
-		}
-	}
-	if(!dirs)
-	{ 
-		msg = [[Message alloc] initWithMessage:@"### END PICTURELIST ###\n" andConnection:con];
-		[messagesToSend addObject:msg];
-		[msg release];
-	}
-	*/
-	
-	if(dirs)
+							  
+	for(int i=0; i < [directoryURLs count]; i++)
 	{
-		//msg = [[Message alloc] initWithMessage:@"### START IMAGECOUNT ###\n" andConnection:con];
-		//[messagesToSend addObject:msg];
-		//[msg release];
-		msg = [[Message alloc] initWithMessage:[NSString stringWithFormat:@"%i\n", [imagesArray count]] andConnection:con];
-		[messagesToSend addObject:msg];
-		[msg release];
-		msg = [[Message alloc] initWithMessage:@"### END IMAGECOUNT ###\n" andConnection:con];
+		NSNumber *isDirectory = nil;
+		NSURL *file = [directoryURLs objectAtIndex:i];
+		[file getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:NULL];
+		if ([isDirectory boolValue]) {
+			// format is: url_name of the object, where url is a numberic format url like /1/3/3
+			NSString *urlString = [NSString stringWithFormat:@"%@%i_%@", path, i, [file lastPathComponent]];
+			urlString = [urlString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+			NSURL *urlToAdd = [NSURL URLWithString:urlString];
+			NSLog(@"urlToAdd: %@ %@ %@", urlToAdd, [file lastPathComponent], urlString);
+			[subDirectoryArray addObject:urlToAdd];
+		} else {
+			imageCount++;
+		}
+
+	}
+							  
+	
+	msg = [[Message alloc] initWithMessage:@"### START DIRECTORIES ###\n" andConnection:con];
+	[messagesToSend addObject:msg];
+	[msg release];
+	int i;
+	for ( i = 0; i < [subDirectoryArray count]; ++i )
+	{  
+		msg = [[Message alloc] initWithMessage:[NSString stringWithFormat:@"%@\n", [subDirectoryArray objectAtIndex:i]] andConnection:con];
 		[messagesToSend addObject:msg];
 		[msg release];
 	}
+	msg = [[Message alloc] initWithMessage:@"### END DIRECTORIES ###\n" andConnection:con];
+	[messagesToSend addObject:msg];
+	[msg release];
+	
+	
+
+	//msg = [[Message alloc] initWithMessage:@"### START IMAGECOUNT ###\n" andConnection:con];
+	//[messagesToSend addObject:msg];
+	//[msg release];
+	msg = [[Message alloc] initWithMessage:[NSString stringWithFormat:@"%i\n", imageCount] andConnection:con];
+	[messagesToSend addObject:msg];
+	[msg release];
+	msg = [[Message alloc] initWithMessage:@"### END IMAGECOUNT ###\n" andConnection:con];
+	[messagesToSend addObject:msg];
+	[msg release];
+							  
 	[subDirectoryArray release];
-	[imagesArray release];
 }
 
 
@@ -261,9 +268,8 @@ enum {
 						// memory for the images which were already being displayed in fullscreen
 						NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];  
 						
-						NSString *imagePathString = [NSString stringWithFormat:@"%@%@", rootDirectory, messageLine];
-					    NSLog(@"setting image: %@", imagePathString);
-						NSImage *imageToDisplayOrigSize = [[NSImage alloc] initWithContentsOfFile:imagePathString];
+						NSURL *imageURL = [DirectoryHandler searchFileInDirectories:[NSURL URLWithString:messageLine] andDocumentRoot:[NSURL URLWithString:rootDirectory]];
+						NSImage *imageToDisplayOrigSize = [[NSImage alloc] initWithContentsOfURL:imageURL];
 						displayedImage = [FullScreenController imageByScalingProportionallyToSize:NSMakeSize(screenWidth, screenHeight) withImage:imageToDisplayOrigSize];
 						[imageToDisplayOrigSize release];
 						
@@ -281,7 +287,7 @@ enum {
 						sending = sendingNothing;
 					} else {
 						// send contents of the received path
-						[self sendContentsOfDirectory:[NSString stringWithFormat:@"%@%@", self.rootDirectory, messageLine] directories:YES toConnection:con];
+						[self sendContentsOfDirectory:[NSString stringWithFormat:@"%@", messageLine] toConnection:con];
 					}
 					break;
 			}
@@ -292,7 +298,7 @@ enum {
 // this method processes any new connection to the SimpleCocoaServer
 - (void)processNewConnection:(SimpleCocoaConnection *)con {
 	//NSLog(@"processing new con: %@", selectedDirectory);
-	[self sendContentsOfDirectory:self.rootDirectory directories:YES toConnection:con];
+	[self sendContentsOfDirectory:self.rootDirectory toConnection:con];
 }
 
 
@@ -359,16 +365,6 @@ enum {
 	return [newImage autorelease];
 }
 
-// this method returns the name of the maching running this program
-/*+ (NSString *)computerName
-{
-	CFStringRef name;
-	NSString *computerName;
-	name=SCDynamicStoreCopyComputerName(NULL,NULL);
-	computerName=[NSString stringWithString:(NSString *)name];
-	CFRelease(name);
-	return computerName;
-}*/
 
 # pragma mark -
 # pragma mark delegate methods for NetService (bonjour advertising on the network)

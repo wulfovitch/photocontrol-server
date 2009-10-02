@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 
 @class AsyncSocket;
+@class DirectoryHandler;
 
 @interface HTTPServer : NSObject
 {

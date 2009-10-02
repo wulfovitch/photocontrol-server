@@ -28,6 +28,7 @@
 		3A3BA0F10ED0EFC10001D284 /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */; };
 		3A4419860FA4F34900EA120B /* photocontrol-start.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4419850FA4F34900EA120B /* photocontrol-start.png */; };
 		3A695FA30F9E3E450053D0C7 /* photocontrol-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */; };
+		3AA0FECD1076B54100110EB5 /* DirectoryHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0FECC1076B54100110EB5 /* DirectoryHandler.m */; };
 		3AA905200ED5C771008C7916 /* FullScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */; };
 		3AA905D50ED5EBBF008C7916 /* FullScreenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA905D40ED5EBBF008C7916 /* FullScreenController.m */; };
 		3AB02D1F0F3FA5B1009FB5BF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3AB02D1D0F3FA5B1009FB5BF /* Localizable.strings */; };
@@ -94,6 +95,8 @@
 		3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
 		3A4419850FA4F34900EA120B /* photocontrol-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photocontrol-start.png"; sourceTree = "<group>"; };
 		3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "photocontrol-icon.icns"; sourceTree = "<group>"; };
+		3AA0FECB1076B54100110EB5 /* DirectoryHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryHandler.h; sourceTree = "<group>"; };
+		3AA0FECC1076B54100110EB5 /* DirectoryHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryHandler.m; sourceTree = "<group>"; };
 		3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullScreenWindow.xib; sourceTree = "<group>"; };
 		3AA905D30ED5EBBF008C7916 /* FullScreenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenController.h; sourceTree = "<group>"; };
 		3AA905D40ED5EBBF008C7916 /* FullScreenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenController.m; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				3A3375D90ECBA5EB0088A7C6 /* Message.m */,
 				3ADD1D5B0EBD0EFC00E08A84 /* SimpleCocoaServer.h */,
 				3ADD1D5A0EBD0EFC00E08A84 /* SimpleCocoaServer.m */,
+				3AA0FECB1076B54100110EB5 /* DirectoryHandler.h */,
+				3AA0FECC1076B54100110EB5 /* DirectoryHandler.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				3A3375DA0ECBA5EB0088A7C6 /* Message.m in Sources */,
 				3A3BA0F10ED0EFC10001D284 /* HTTPServer.m in Sources */,
 				3AA905D50ED5EBBF008C7916 /* FullScreenController.m in Sources */,
+				3AA0FECD1076B54100110EB5 /* DirectoryHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

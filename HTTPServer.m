@@ -829,12 +829,12 @@ static NSMutableArray *recentNonces;
 	NSString *relativeURL = [uri relativeString];
 	
 	// ########### CUSTOM CODE
-	NSString *imagesPath = [NSString stringWithFormat:@"%@%@/", [[server documentRoot] relativePath], [relativeURL stringByDeletingLastPathComponent]];
+	//NSString *imagesPath = [NSString stringWithFormat:@"%@%@/", [[server documentRoot] relativePath], [relativeURL stringByDeletingLastPathComponent]];
 	
-	NSMutableArray *imagesArray = [[NSMutableArray alloc] init];	
+	//NSMutableArray *imagesArray = [[NSMutableArray alloc] init];	
 	
 	// iterate through the directories
-	NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager] enumeratorAtPath:imagesPath];
+	/*NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager] enumeratorAtPath:imagesPath];
 	NSString *pname;
 	while (pname = [direnum nextObject])
 	{
@@ -871,16 +871,23 @@ static NSMutableArray *recentNonces;
 	NSString *standardizedString = [[NSString stringWithFormat:@"%@/%@", [relativeURL stringByDeletingLastPathComponent], [imagesArray objectAtIndex:imageIndex]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	
 	uri = [NSURL URLWithString:standardizedString];
+	*/
 	NSLog(@"replyToHTTPRequest1 %@", uri);
 	
-	
+	uri = [DirectoryHandler searchFileInDirectories:uri andDocumentRoot:[server documentRoot]];
 	
 	// Respond properly to HTTP 'GET' and 'HEAD' commands
 	NSData *customData = [self dataForURI:uri];
-	UInt64 contentLength = (UInt64)[customData length];
-	if(contentLength == 0)
+	UInt64 contentLength;
+	if(customData != NULL)
 	{
-		contentLength = [self contentLengthForURI:uri];
+		contentLength = (UInt64)[customData length];
+		if(contentLength == 0)
+		{
+			contentLength = [self contentLengthForURI:uri];
+		}
+	} else {
+		contentLength = 0;
 	}
 	
 	if(contentLength == 0)
@@ -1094,11 +1101,13 @@ static NSMutableArray *recentNonces;
 	//else
 	//{
 	NSLog(@"dataForURI %@", url);
-	url = [[server documentRoot] URLByAppendingPathComponent:[url path]];
-	//url = [[NSURL URLWithString:[server documentRoot]] URLByAppendingPathComponent:[url path]];	
-	//url = [NSURL URLWithString:[url path] relativeToURL:[server documentRoot]];
-	//}
-	NSLog(@"dataForURI %@", url);
+	
+	if(url == NULL)
+	{
+		return NULL;
+	}
+	
+	//url = [[server documentRoot] URLByAppendingPathComponent:[url path]];
 	
 	// Watch out for sneaky requests with ".." in the path
 	// For example, the following request: "../Documents/TopSecret.doc"
@@ -1109,6 +1118,8 @@ static NSMutableArray *recentNonces;
 	int options = NSMappedRead | NSUncachedRead;
 	return [NSData dataWithContentsOfURL:url options:options error:nil];
 }
+
+
 
 /**
  * Called if we receive some sort of malformed HTTP request.
