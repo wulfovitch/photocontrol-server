@@ -825,8 +825,6 @@ static NSMutableArray *recentNonces;
 		return;
 	}
 	
-	NSLog(@"[uri relativeString] %@", [uri relativeString]);
-	NSString *relativeURL = [uri relativeString];
 	
 	// ########### CUSTOM CODE
 	//NSString *imagesPath = [NSString stringWithFormat:@"%@%@/", [[server documentRoot] relativePath], [relativeURL stringByDeletingLastPathComponent]];
@@ -1065,7 +1063,10 @@ static NSMutableArray *recentNonces;
 {
 	NSString *filePath = [self filePathForURI:url];
 	
-	NSDictionary *attributes = [[NSFileManager defaultManager] fileAttributesAtPath:filePath traverseLink:NO];
+	
+	NSError *error;
+	NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
+	//NSDictionary *attributes = [[NSFileManager defaultManager] fileAttributesAtPath:filePath traverseLink:NO];
 	
 	NSNumber *fileSize = [attributes objectForKey:NSFileSize];
 	

@@ -6,7 +6,7 @@
 #import <IOKit/pwr_mgt/IOPMLib.h>
 
 
-@interface FullScreenController : NSWindowController {
+@interface FullScreenController : NSWindowController <NSNetServiceDelegate> {
 	// FullScreenView variables
 	IBOutlet FullScreenWindow *fullScreenWindow;
 	IBOutlet NSImageView *imageDisplayedInFullScreen;

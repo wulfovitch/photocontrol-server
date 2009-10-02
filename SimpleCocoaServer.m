@@ -250,10 +250,7 @@
 
 - (void)processMessage:(NSString *)message orData:(NSData *)data fromConnection:(SimpleCocoaConnection *)con;
 {
-	//for compatibility to older versions that used this class
-	if([serverDelegate respondsToSelector:@selector(processMessage:fromConnection:)] && ![serverDelegate respondsToSelector:@selector(processMessage:orData:fromConnection:)])
-		[serverDelegate processMessage:message fromConnection:con];//[serverDelegate performSelector:@selector(processMessage:fromConnection:) withObject:message withObject:con];
-	else if([serverDelegate respondsToSelector:@selector(processMessage:orData:fromConnection:)])
+	if([serverDelegate respondsToSelector:@selector(processMessage:orData:fromConnection:)])
 		[serverDelegate processMessage:message orData:data fromConnection:con];
 }
 

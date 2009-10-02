@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
+#import "DirectoryHandler.h"
 
 @class AsyncSocket;
-@class DirectoryHandler;
 
-@interface HTTPServer : NSObject
+@interface HTTPServer : NSObject <NSNetServiceDelegate>
 {
 	// Underlying asynchronous TCP/IP socket
 	AsyncSocket *asyncSocket;
