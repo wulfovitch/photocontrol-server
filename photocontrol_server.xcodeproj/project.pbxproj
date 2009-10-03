@@ -27,6 +27,7 @@
 		3A3375DA0ECBA5EB0088A7C6 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3375D90ECBA5EB0088A7C6 /* Message.m */; };
 		3A3BA0F10ED0EFC10001D284 /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */; };
 		3A4419860FA4F34900EA120B /* photocontrol-start.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A4419850FA4F34900EA120B /* photocontrol-start.png */; };
+		3A5ED7481077AD1700B3CC85 /* gpl-3.0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3A5ED7471077AD1700B3CC85 /* gpl-3.0.txt */; };
 		3A695FA30F9E3E450053D0C7 /* photocontrol-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */; };
 		3AA0FECD1076B54100110EB5 /* DirectoryHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0FECC1076B54100110EB5 /* DirectoryHandler.m */; };
 		3AA905200ED5C771008C7916 /* FullScreenWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */; };
@@ -94,6 +95,7 @@
 		3A3BA0EF0ED0EFC10001D284 /* HTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPServer.h; sourceTree = "<group>"; };
 		3A3BA0F00ED0EFC10001D284 /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
 		3A4419850FA4F34900EA120B /* photocontrol-start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photocontrol-start.png"; sourceTree = "<group>"; };
+		3A5ED7471077AD1700B3CC85 /* gpl-3.0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gpl-3.0.txt"; sourceTree = "<group>"; };
 		3A695FA20F9E3E450053D0C7 /* photocontrol-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "photocontrol-icon.icns"; sourceTree = "<group>"; };
 		3AA0FECB1076B54100110EB5 /* DirectoryHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectoryHandler.h; sourceTree = "<group>"; };
 		3AA0FECC1076B54100110EB5 /* DirectoryHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectoryHandler.m; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				3AA9051F0ED5C771008C7916 /* FullScreenWindow.xib */,
 				3AB02D1D0F3FA5B1009FB5BF /* Localizable.strings */,
+				3A5ED7471077AD1700B3CC85 /* gpl-3.0.txt */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				3AFCA9650FA21151001C437E /* MainMenu.xib in Resources */,
 				3AFCA9A30FA218EC001C437E /* Credits.rtf in Resources */,
 				3A4419860FA4F34900EA120B /* photocontrol-start.png in Resources */,
+				3A5ED7481077AD1700B3CC85 /* gpl-3.0.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
