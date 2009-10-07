@@ -23,7 +23,7 @@
 // Code derived from here: http://www.cocoadev.com/index.pl?CoregraphicsFullscreen
 
 //In Interface Builder we set CustomWindow to be the class for our window, so our own initializer is called here.
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
 	
     NSWindow* result = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
     //Set the background color to clear so that (along with the setOpaque call below) we can see through the parts

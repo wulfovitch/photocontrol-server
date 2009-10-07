@@ -159,7 +159,7 @@ enum {
 			} else {
 				
 				NSLog(@"%@", component);
-				int intIndex;
+				NSInteger intIndex;
 				BOOL success = [[NSScanner scannerWithString:component] scanInteger:&intIndex];
 				// check if that file even exists
 				if(!success && intIndex >= [directoryURLs count])

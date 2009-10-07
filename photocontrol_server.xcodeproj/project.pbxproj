@@ -6,20 +6,6 @@
 	objectVersion = 45;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		3ADD1D0D0EBD0A9000E08A84 /* SSCrypto */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 3ADD1D150EBD0AB500E08A84 /* Build configuration list for PBXAggregateTarget "SSCrypto" */;
-			buildPhases = (
-				3ADD1D0C0EBD0A9000E08A84 /* CopyFiles */,
-			);
-			dependencies = (
-			);
-			name = SSCrypto;
-			productName = SSCrypto;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		3A27AEED0F6F165A004DF081 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A27AEEC0F6F165A004DF081 /* Sparkle.framework */; };
 		3A27AF020F6F16CF004DF081 /* Sparkle.framework in Sparkle */ = {isa = PBXBuildFile; fileRef = 3A27AEEC0F6F165A004DF081 /* Sparkle.framework */; };
@@ -38,8 +24,6 @@
 		3ADD1B340EBCF5C400E08A84 /* FullScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1B330EBCF5C400E08A84 /* FullScreenWindow.m */; };
 		3ADD1BC20EBD03B800E08A84 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADD1BC10EBD03B800E08A84 /* CoreServices.framework */; };
 		3ADD1CD50EBD07F900E08A84 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1AD20EBCF4FC00E08A84 /* AsyncSocket.m */; };
-		3ADD1D300EBD0CE600E08A84 /* SSCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */; };
-		3ADD1D350EBD0D0300E08A84 /* SSCrypto.framework in SSCrypto */ = {isa = PBXBuildFile; fileRef = 3ADD1D2F0EBD0CE600E08A84 /* SSCrypto.framework */; };
 		3ADD1D5C0EBD0EFC00E08A84 /* SimpleCocoaServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD1D5A0EBD0EFC00E08A84 /* SimpleCocoaServer.m */; };
 		3AFCA9650FA21151001C437E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AFCA9640FA21151001C437E /* MainMenu.xib */; };
 		3AFCA9A30FA218EC001C437E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3AFCA9A20FA218EC001C437E /* Credits.rtf */; };
@@ -57,26 +41,6 @@
 				3A27AF020F6F16CF004DF081 /* Sparkle.framework in Sparkle */,
 			);
 			name = Sparkle;
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3ADD1D0C0EBD0A9000E08A84 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /tmp/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3ADD1D380EBD0D0600E08A84 /* SSCrypto */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				3ADD1D350EBD0D0300E08A84 /* SSCrypto.framework in SSCrypto */,
-			);
-			name = SSCrypto;
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -130,7 +94,6 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				3ADD1BC20EBD03B800E08A84 /* CoreServices.framework in Frameworks */,
-				3ADD1D300EBD0CE600E08A84 /* SSCrypto.framework in Frameworks */,
 				3A27AEED0F6F165A004DF081 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,7 +227,6 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				3ADD1D380EBD0D0600E08A84 /* SSCrypto */,
 				3A27AF010F6F16B9004DF081 /* Sparkle */,
 			);
 			buildRules = (
@@ -298,7 +260,6 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* photocontrol_server */,
-				3ADD1D0D0EBD0A9000E08A84 /* SSCrypto */,
 			);
 		};
 /* End PBXProject section */
@@ -363,27 +324,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3ADD1D0E0EBD0A9000E08A84 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = SSCrypto;
-			};
-			name = Debug;
-		};
-		3ADD1D0F0EBD0A9000E08A84 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				PRODUCT_NAME = SSCrypto;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -457,15 +397,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3ADD1D150EBD0AB500E08A84 /* Build configuration list for PBXAggregateTarget "SSCrypto" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3ADD1D0E0EBD0A9000E08A84 /* Debug */,
-				3ADD1D0F0EBD0A9000E08A84 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "photocontrol_server" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

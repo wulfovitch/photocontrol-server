@@ -45,7 +45,7 @@
 			if(![component isEqual:@"/"])
 			{
 				NSLog(@"%@", component);
-				int intIndex;
+				NSInteger intIndex;
 				BOOL success = [[NSScanner scannerWithString:component] scanInteger:&intIndex];
 				if(!success)
 				{

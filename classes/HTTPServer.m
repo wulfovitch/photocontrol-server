@@ -31,7 +31,7 @@
 #if TARGET_OS_IPHONE
 #import <CommonCrypto/CommonDigest.h>
 #else
-#import <SSCrypto/SSCrypto.h>
+//#import <SSCrypto/SSCrypto.h>
 #endif
 
 
@@ -535,8 +535,9 @@ static NSMutableArray *recentNonces;
 	
 #else
 	
-	NSData *clearData = [clearText dataUsingEncoding:NSUTF8StringEncoding];
-	return [[SSCrypto getMD5ForData:clearData] hexval];
+	//NSData *clearData = [clearText dataUsingEncoding:NSUTF8StringEncoding];
+	//return [[SSCrypto getMD5ForData:clearData] hexval];
+	return @"test";
 	
 #endif
 }
