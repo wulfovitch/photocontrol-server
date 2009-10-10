@@ -850,51 +850,6 @@ static NSMutableArray *recentNonces;
 		return;
 	}
 	
-	
-	// ########### CUSTOM CODE
-	//NSString *imagesPath = [NSString stringWithFormat:@"%@%@/", [[server documentRoot] relativePath], [relativeURL stringByDeletingLastPathComponent]];
-	
-	//NSMutableArray *imagesArray = [[NSMutableArray alloc] init];	
-	
-	// iterate through the directories
-	/*NSDirectoryEnumerator *direnum = [[NSFileManager defaultManager] enumeratorAtPath:imagesPath];
-	NSString *pname;
-	while (pname = [direnum nextObject])
-	{
-		// add images to images array
-		if ([[[pname pathExtension] lowercaseString] isEqualToString:@"jpg"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"jpeg"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"png"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"gif"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"bmp"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"tif"] ||
-			[[[pname pathExtension] lowercaseString] isEqualToString:@"tiff"])
-		{
-			if(![pname isCaseInsensitiveLike:@".DS_Store"])
-			{
-				NSString *addedImage = [[NSString alloc] initWithString:pname];
-				[imagesArray addObject:addedImage];
-				[addedImage release];
-			}
-		}
-	}
-	NSLog(@"replyToHTTPRequest [imagesArray count]: %d", [imagesArray count]);
-	NSLog(@"replyToHTTPRequest [relativePath lastPathComponent]: %@", [relativeURL lastPathComponent]);
-	
-	int imageIndex = [[relativeURL lastPathComponent] intValue];
-	if ([imagesArray count] < 1) {
-		return;
-	}
-	NSLog(@"imageIndex: %d", imageIndex);
-	
-	NSLog(@"replyToHTTPRequest0 %@", uri);
-	//NSString *standardizedString = [(NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) [NSString stringWithFormat:@"%@/%@", [relativeURL stringByDeletingLastPathComponent], [imagesArray objectAtIndex:imageIndex]], CFSTR(""), NULL, kCFStringEncodingUTF8) autorelease];
-	//NSString *standardizedString = [[NSString stringWithFormat:@"%@/%@", [relativeURL stringByDeletingLastPathComponent], [imagesArray objectAtIndex:imageIndex]] stringByStandardizingPath];
-	//NSLog(@"standardizedString: %@", standardizedString);
-	NSString *standardizedString = [[NSString stringWithFormat:@"%@/%@", [relativeURL stringByDeletingLastPathComponent], [imagesArray objectAtIndex:imageIndex]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	
-	uri = [NSURL URLWithString:standardizedString];
-	*/
 	NSLog(@"replyToHTTPRequest1 %@", uri);
 	
 	uri = [DirectoryHandler searchFileInDirectories:uri andDocumentRoot:[server documentRoot]];
@@ -926,8 +881,6 @@ static NSMutableArray *recentNonces;
 		return;
     }
 	
-	
-	/* ################################## */
 	
 	NSLog(@"replyToHTTPRequest2 %@", [uri relativeString]);
 	NSString *realName = [uri relativeString];
@@ -1063,7 +1016,7 @@ static NSMutableArray *recentNonces;
 		relativePath = [relativePath substringFromIndex:1];
 	}
 	
-	//if ([relativePath hasPrefix:@"/"]) relativePath = [@"." stringByAppendingString:relativePath];
+	if ([relativePath hasPrefix:@"/"]) relativePath = [@"." stringByAppendingString:relativePath];
 	
 	if([relativePath hasSuffix:@"/"])
 	{
@@ -1117,15 +1070,6 @@ static NSMutableArray *recentNonces;
 	// If there is no configured documentRoot, then it makes no sense to try to return anything
 	if(![server documentRoot]) return nil;
 	
-	//if ([path hasPrefix:@"/"]) path = [@"." stringByAppendingString:path];
-	
-	//if([url pathExtension:@"/"])
-	//{
-	//	NSString *newPath = [url stringByAppendingString:@"index.html"];
-	//	url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [server documentRoot], newPath]];
-	//}
-	//else
-	//{
 	NSLog(@"dataForURI %@", url);
 	
 	if(url == NULL)
@@ -1133,11 +1077,9 @@ static NSMutableArray *recentNonces;
 		return NULL;
 	}
 	
-	//url = [[server documentRoot] URLByAppendingPathComponent:[url path]];
-	
 	// Watch out for sneaky requests with ".." in the path
 	// For example, the following request: "../Documents/TopSecret.doc"
-	//if(![[url path] hasPrefix:[[server documentRoot] path]]) return nil;
+	if(![[url path] hasPrefix:[[server documentRoot] path]]) return nil;
 	
 	// We don't want to map the file data into ram
 	// We just want to map it from the disk, and we also don't need to bother caching it
